@@ -1,8 +1,6 @@
-# frozen_string_literal: true
+require_relative '../config/config'
 
 # https://github.com/sparklemotion/sqlite3-ruby
-
-require 'sqlite3'
 
 # Open a database
 db = SQLite3::Database.new 'db/sqlite.db'
