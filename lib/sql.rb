@@ -16,7 +16,7 @@ SQL
 # Execute a few inserts
 {
   'one' => 1,
-  'two' => 2,
+  'two' => 2
 }.each do |pair|
   db.execute 'insert into numbers values ( ?, ? )', pair
 end
