@@ -16,9 +16,9 @@ end
 table = db[:fruits]
 # Sequel::SQLite::Dataset
 
-table.insert(name: "Orange", amount: 10)
-table.insert(name: "Apple", amount: 2)
-table.insert(name: "Banana", amount: 7)
+table.insert(name: 'Orange', amount: 10)
+table.insert(name: 'Apple', amount: 2)
+table.insert(name: 'Banana', amount: 7)
 
 puts table.count
 # 3
