@@ -1,7 +1,8 @@
 require_relative '../config/config'
-require 'sequel'
 
-db = Sequel.sqlite('/tmp/testing.db')
+# https://www.rubyguides.com/2019/06/ruby-sequel-orm/
+
+db = Sequel.sqlite('db/database.sqlite3')
 
 unless db.table_exists?(:fruits)
   db.create_table :fruits do
