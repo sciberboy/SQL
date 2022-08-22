@@ -29,4 +29,3 @@ puts table.all
 #   { id: 2, name: "Apple", amount: 2 },
 #   { id: 3, name: "Banana", amount: 7 }
 # ]
-
