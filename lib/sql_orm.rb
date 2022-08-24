@@ -4,12 +4,10 @@ require_relative '../config/environment'
 
 DB = Sequel.sqlite('db/database.sqlite3')
 
-unless DB.table_exists?(:fruits)
-  DB.create_table :fruits do
-    primary_key :id
-    column :name, String
-    column :amount, Integer
-  end
+DB.create_table :fruits do
+  primary_key :id
+  column :name, String
+  column :amount, Integer
 end
 
 table = DB[:fruits]
@@ -28,3 +26,6 @@ puts table.all
 #   { id: 2, name: "Apple", amount: 2 },
 #   { id: 3, name: "Banana", amount: 7 }
 # ]
+DB.drop_table :fruits
+
+puts message = DB.table_exists?(:fruits) ? table.all : 'Table does not exist!'
