@@ -1,11 +1,11 @@
-require_relative '../config/config'
+require_relative '../config/environment'
 
 # https://www.rubyguides.com/2019/06/ruby-sequel-orm/
 
-db = Sequel.sqlite('db/database.sqlite3')
+DB = Sequel.sqlite('db/database.sqlite3')
 
-unless db.table_exists?(:fruits)
-  db.create_table :fruits do
+unless DB.table_exists?(:fruits)
+  DB.create_table :fruits do
     primary_key :id
 
     column :name, String
@@ -13,7 +13,7 @@ unless db.table_exists?(:fruits)
   end
 end
 
-table = db[:fruits]
+table = DB[:fruits]
 # Sequel::SQLite::Dataset
 
 table.insert(name: 'Orange', amount: 10)

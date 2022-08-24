@@ -1,12 +1,12 @@
-require_relative '../config/config'
+require_relative '../config/environment'
 
 # https://github.com/sparklemotion/sqlite3-ruby
 
 # Open a database
-db = SQLite3::Database.new 'db/sqlite.db'
+DB = SQLite3::Database.new 'db/sqlite.db'
 
 # Create a table
-rows = db.execute <<-SQL
+rows = DB.execute <<-SQL
   create table numbers (
     name varchar(30),
     val int
@@ -18,18 +18,18 @@ SQL
   'one' => 1,
   'two' => 2
 }.each do |pair|
-  db.execute 'insert into numbers values ( ?, ? )', pair
+  DB.execute 'insert into numbers values ( ?, ? )', pair
 end
 
 # Find a few rows
-db.execute('select * from numbers') do |row|
+DB.execute('select * from numbers') do |row|
   p row
 end
 # => ["one", 1]
 #    ["two", 2]
 
 # Create another table with multiple columns
-db.execute <<-SQL
+DB.execute <<-SQL
   create table students (
     name varchar(50),
     email varchar(50),
@@ -39,10 +39,10 @@ db.execute <<-SQL
 SQL
 
 # Execute inserts with parameter markers
-db.execute("INSERT INTO students (name, email, grade, blog)
+DB.execute("INSERT INTO students (name, email, grade, blog)
             VALUES (?, ?, ?, ?)", %w[Jane me@janedoe.com A http://blog.janedoe.com])
 
-db.execute('select * from students') do |row|
+DB.execute('select * from students') do |row|
   p row
 end
 # => ["Jane", "me@janedoe.com", "A", "http://blog.janedoe.com"]
